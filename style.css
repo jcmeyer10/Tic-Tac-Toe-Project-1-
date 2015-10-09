@@ -1,0 +1,129 @@
+* {
+  background-color: #94DBFF;
+}
+
+h1 {
+  color:#ee0f0f;
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.scoreboard {
+ height: 100px;
+ width: 400px;
+ background-color: brown;
+ margin: auto;
+ margin-bottom: 25px;
+}
+
+.gameboard {
+  width: 500px;
+  height: 500px;
+  padding: 25px;
+  border: 25px;
+  margin: 25px;
+  background-color: grey;
+  margin:auto;
+  margin-bottom: 25px;
+}
+
+.cella {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+}
+.cellb {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+}
+.celld {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
+}
+.cellc {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
+}
+.celle {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
+}
+.cellf {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
+}
+
+.cellg {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
+}
+.cellh {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
+}
+.celli {
+float: left;
+height: 150px;
+width: 150px;
+background-color: #ff00ff;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-right: 5px;
+margin-left: 10px;
+float: left;
