@@ -23,6 +23,13 @@ h2 {
  border-color: black
 }
 
+.scoreboard > * {
+  padding:15px;
+  float:left;
+  color:grey;
+  align: center;
+}
+
 .gameboard {
   width: 350px;
   height: 350px;
@@ -43,7 +50,7 @@ margin-left: 10px;
 float: left;
 text-align: center;
 color: white;
-font-size: 85px;
+font-size: 550%;
 font-family: arial;
 background-color:#64655f;
 }
@@ -55,3 +62,14 @@ background-color:#64655f;
 .restartbutton {
   height: 30px;
 }
+
+@font-face {
+    font-family: 'eraserregular';
+    src: url('eraserregular-webfont.eot');
+    src: url('Fonts/eraserregular-webfont.ttf') format('truetype'),
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+curl --request POST --header "Authorization: Token token=40d58ee9a46818cc28cc6a04a65423d5" -d '{}'  http://ttt.wdibos.com/games

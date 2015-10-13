@@ -45,22 +45,25 @@
 'use strict';
 
 $(document).ready(function() {
+  var xWin = 0;
+  var oWin = 0;
   var player1 = "X";
   var player2 = "O";
   var playerTurn = player1;
   var gamePiece = $('.gameboard').children();
   var winner = null
+  var token = 0;
+
   // var fullBoard =  function(){
-  // var token = 0;
   //   $(gamePiece).each(function(){
   //     if ($(this).text()!== ''){
   //       token += 1;
   //     }
   //   });
   //   if (token === 9){
-  //     console.log("Cat's Game!");
   //     return "Cat's Game";
   //   }
+  //   console.log("Cat's Game")
   // };
 
   $('.box').on('click', function(){
@@ -77,7 +80,28 @@ $(document).ready(function() {
       }
   });
 
+// var newScore = function (){
+//   if (xWin =+ 1){
+//     return $('.x-score').html("X Score: " + xWin);
+//     }
+//   else if (yWin += 1){
+//     return $('.y-score').html("Y Score: " + oWin)
+//     };
+//   };
+
   // var winnerX = function winnerX()
+
+  var restart = $('.restartbutton').on('click', function(){
+    $(gamePiece).each(function(){
+      if ($(this).text()!== ''){
+        token += 1;
+            }
+      if (token >= 1){
+        $(gamePiece).html('');
+      };
+    return restart;
+  });
+});
 
   var whoWins = function whoWins() {
     if(
@@ -90,7 +114,8 @@ $(document).ready(function() {
        $(gamePiece[1]).text() ==="X" && $(gamePiece[4]).text() === "X" && $(gamePiece[7]).text() === "X" ||
        $(gamePiece[2]).text() ==="X" && $(gamePiece[5]).text() === "X" && $(gamePiece[8]).text() === "X"
        ) {
-        console.log('winner is X');
+        xWin += 1;
+        console.log(xWin);
         return winner;
   } else if (
        $(gamePiece[0]).text() ==="O" && $(gamePiece[1]).text() === "O" && $(gamePiece[2]).text() === "O" ||
@@ -102,12 +127,12 @@ $(document).ready(function() {
        $(gamePiece[1]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[7]).text() === "O" ||
        $(gamePiece[2]).text() ==="O" && $(gamePiece[5]).text() === "O" && $(gamePiece[8]).text() === "O"
        ) {
-      console.log('winner is O');
+      oWin += 1;
+      console.log(oWin);
       return winner;
       }
   };
-
-});
+})
 // end documentReady
 
 
