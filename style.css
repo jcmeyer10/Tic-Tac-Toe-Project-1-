@@ -1,11 +1,13 @@
 body {
-  background-color: #FF0000;
+  background: url(http://beyondthespectrum.org/wp-content/uploads/2014/11/chalkboard.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
 h1 {
-  color:#FF8915;
+  color:#FFCC11;
   text-align: center;
+  font-size: 40px;
+  font-family: cursive;
 }
 
 h2 {
@@ -15,29 +17,25 @@ h2 {
 .scoreboard {
  height: 100px;
  width: 400px;
- background-color: brown;
+ background-color: none;
  margin: auto;
- margin-bottom: 25px;
  background-image: none;
+ border-color: black
 }
 
 .gameboard {
-  width: 500px;
-  height: 500px;
-  padding: 25px;
-  border: 25px;
-  margin: 25px;
+  width: 350px;
+  height: 350px;
   background-color: none;
   margin:auto;
-  margin-bottom: 25px;
-  background-image: none;
+  margin-bottom: 10px;
 }
 
 .gameboard > * {
 float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
+height: 29%;
+width: 29%;
+background-color: #FFFFE0;
 margin-top: 10px;
 margin-bottom: 5px;
 margin-right: 5px;
@@ -45,8 +43,15 @@ margin-left: 10px;
 float: left;
 text-align: center;
 color: white;
-font-size: 125px;
+font-size: 85px;
 font-family: arial;
-background-image: url(http://designpieces.com/wp-content/uploads/2014/02/chalkboard-black.jpg);
+background-color:#64655f;
+}
 
+.startbutton {
+  height: 30px
+}
+
+.restartbutton {
+  height: 30px;
 }
