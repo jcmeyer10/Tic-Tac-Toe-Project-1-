@@ -1,9 +1,10 @@
-* {
-  background-color: #94DBFF;
+body {
+  background-color: #FF0000;
+  background-size: cover;
 }
 
 h1 {
-  color:#ee0f0f;
+  color:#FF8915;
   text-align: center;
 }
 
@@ -17,6 +18,7 @@ h2 {
  background-color: brown;
  margin: auto;
  margin-bottom: 25px;
+ background-image: none;
 }
 
 .gameboard {
@@ -25,32 +27,13 @@ h2 {
   padding: 25px;
   border: 25px;
   margin: 25px;
-  background-color: grey;
+  background-color: none;
   margin:auto;
   margin-bottom: 25px;
+  background-image: none;
 }
 
-.cella {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-}
-.cellb {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-}
-.celld {
+.gameboard > * {
 float: left;
 height: 150px;
 width: 150px;
@@ -60,70 +43,10 @@ margin-bottom: 5px;
 margin-right: 5px;
 margin-left: 10px;
 float: left;
-}
-.cellc {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-float: left;
-}
-.celle {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-float: left;
-}
-.cellf {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-float: left;
-}
+text-align: center;
+color: white;
+font-size: 125px;
+font-family: arial;
+background-image: url(http://designpieces.com/wp-content/uploads/2014/02/chalkboard-black.jpg);
 
-.cellg {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-float: left;
 }
-.cellh {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-float: left;
-}
-.celli {
-float: left;
-height: 150px;
-width: 150px;
-background-color: #ff00ff;
-margin-top: 10px;
-margin-bottom: 5px;
-margin-right: 5px;
-margin-left: 10px;
-float: left;
