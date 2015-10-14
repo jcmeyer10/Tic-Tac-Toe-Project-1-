@@ -1,6 +1,8 @@
 'use strict';
-
+//Begin Document Ready
 $(document).ready(function() {
+
+
   var xWin = 0;
   var oWin = 0;
   var player1 = "X";
@@ -16,33 +18,42 @@ $(document).ready(function() {
 //from being clicked more than once
 
 
-$('.startbutton').bind('click', function(){
+$('.startbutton').on('click', function(){
     $(gamePiece).each(function(){
       if ($(this).text()!== ''){
         token += 1;
             }
       if (token >= 1){
+        playGame();
         $(gamePiece).html('');
-        $('.message').empty();
+        $('.message').html("Let's Start a New Game!");
       };
   });
 });
 
-$('.box').one('click', function(){
+//This stops the game once a win has been recorded
+var stopGame = function(){
+  $('.box').off('click')
+  }
+
+//End of Document Ready
+
+
+var playGame = function () {$(gamePiece).on('click', function(){
      if (playerTurn === player1){
      $(this).text("X");
-      // fullBoard();
-      whoWins();
+      // whoWins();
       updateScoreboard();
       playerTurn = player2;
      } else {
        $(this).text("O");
-       // fullBoard();
-       whoWins();
+       // whoWins();
        updateScoreboard();
        playerTurn = player1;
      }
+  whoWins();
  });
+}
 
 // var fullBoard =  function(){
 //     $(gamePiece).each(function(){
@@ -56,28 +67,23 @@ $('.box').one('click', function(){
 //     console.log("Cat's Game")
 //   };
 
-//This stops the game once a win has been recorded
-var stopGame = function(){
-  $('.box').off('click')
-  }
-
 //This is to update the scoreboard
 var updateScoreboard = function (){
   $('.x-score').html("X Score: " + xWin);
-  $('.o-score').html("Y Score: " + oWin);
+  $('.o-score').html("O Score: " + oWin);
   $('tie-score').html("Tie Score: " + tie)
   };
 
 // Winner Message for X
 var xWinnerMessage = function(){
-  if (xWin = xWin){
+  if (xWin === xWin){
     $('.message').html("X is the Winner!")
   }
 };
 
 //Winner message for O
 var oWinnerMessage = function(){
-  if (oWin = oWin){
+  if (oWin === oWin){
     $('.message').html("O is the Winner!")
   }
 }
@@ -94,9 +100,10 @@ var oWinnerMessage = function(){
        $(gamePiece[1]).text() ==="X" && $(gamePiece[4]).text() === "X" && $(gamePiece[7]).text() === "X" ||
        $(gamePiece[2]).text() ==="X" && $(gamePiece[5]).text() === "X" && $(gamePiece[8]).text() === "X"
        ) {
-        xWin += 1;
-        xWinnerMessage();
         stopGame();
+        console.log(xWin)
+        ++xWin;
+        xWinnerMessage();
   } else if (
        $(gamePiece[0]).text() ==="O" && $(gamePiece[1]).text() === "O" && $(gamePiece[2]).text() === "O" ||
        $(gamePiece[3]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[5]).text() === "O" ||
@@ -107,7 +114,8 @@ var oWinnerMessage = function(){
        $(gamePiece[1]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[7]).text() === "O" ||
        $(gamePiece[2]).text() ==="O" && $(gamePiece[5]).text() === "O" && $(gamePiece[8]).text() === "O"
        ) {
-        oWin += 1;
+        ++oWin;
+        console.log(oWin);
         oWinnerMessage();
         stopGame();
       }
