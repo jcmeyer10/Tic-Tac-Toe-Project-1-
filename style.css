@@ -14,19 +14,26 @@ h2 {
   text-align: center;
 }
 
+.message {
+  height: 50px;
+  width: 400px;
+  background-image: url();
+  font-size: 250%;
+  text-align: center;
+  margin: auto;
+  color: white;
+}
+
 .scoreboard {
  height: 100px;
  width: 400px;
- background-color: none;
  margin: auto;
- background-image: none;
- border-color: black
 }
 
 .scoreboard > * {
   padding:15px;
   float:left;
-  color:grey;
+  color:white;
   align: center;
 }
 
