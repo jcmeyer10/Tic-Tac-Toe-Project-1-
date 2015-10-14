@@ -24,11 +24,11 @@ $('.startbutton').on('click', function(){
         token += 1;
             }
       if (token >= 1){
-        playGame();
         $(gamePiece).html('');
         $('.message').html("Let's Start a New Game!");
       };
   });
+    playGame();
 });
 
 //This stops the game once a win has been recorded
@@ -39,20 +39,20 @@ var stopGame = function(){
 //End of Document Ready
 
 
-var playGame = function () {$(gamePiece).on('click', function(){
+var playGame = function () {
+  $(gamePiece).on('click', function(){
      if (playerTurn === player1){
      $(this).text("X");
-      // whoWins();
+      whoWins();
       updateScoreboard();
       playerTurn = player2;
      } else {
        $(this).text("O");
-       // whoWins();
+       whoWins();
        updateScoreboard();
        playerTurn = player1;
      }
-  whoWins();
- });
+  });
 }
 
 // var fullBoard =  function(){
@@ -101,9 +101,10 @@ var oWinnerMessage = function(){
        $(gamePiece[2]).text() ==="X" && $(gamePiece[5]).text() === "X" && $(gamePiece[8]).text() === "X"
        ) {
         stopGame();
-        console.log(xWin)
-        ++xWin;
         xWinnerMessage();
+        console.log(xWin)
+        return ++xWin;
+
   } else if (
        $(gamePiece[0]).text() ==="O" && $(gamePiece[1]).text() === "O" && $(gamePiece[2]).text() === "O" ||
        $(gamePiece[3]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[5]).text() === "O" ||
@@ -114,10 +115,10 @@ var oWinnerMessage = function(){
        $(gamePiece[1]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[7]).text() === "O" ||
        $(gamePiece[2]).text() ==="O" && $(gamePiece[5]).text() === "O" && $(gamePiece[8]).text() === "O"
        ) {
-        ++oWin;
         console.log(oWin);
         oWinnerMessage();
         stopGame();
+        return ++oWin;
       }
 };
 });
