@@ -10,7 +10,7 @@ body {
 h1 {
   color:#FFCC11;
   text-align: center;
-  font-size: 40px;
+  font-size: 50px;
 }
 
 h2 {
@@ -24,7 +24,7 @@ h2 {
   font-size: 250%;
   text-align: center;
   margin: auto;
-  color: white;
+  color:#FFCC11;
 }
 
 .scoreboard {
@@ -40,10 +40,16 @@ h2 {
   align: center;
 }
 
+.ajax {
+  height: 500px;
+  width: 300px;
+  float: left;
+  color: #FFCC11;
+}
+
 .gameboard {
   width: 350px;
   height: 350px;
-  background-color: none;
   margin:auto;
   margin-bottom: 10px;
 }
