@@ -1,5 +1,3 @@
-var game = {};
-
 'use strict';
 var tttapi = {
   gameWatcher: null,
@@ -198,8 +196,7 @@ $(function() {
     var id = $('#mark-id').val();
     var data = wrap('game', wrap('cell', form2object(this)));
     e.preventDefault();
-    tttapi.markCell(id, data, token, callback);
-  });
+    tttapi.markCell(id, data, token, callback)
 
   $('#watch-game').on('submit', function(e){
     var token = $(this).children('[name="token"]').val();
@@ -223,5 +220,5 @@ $(function() {
       console.error('an error has occured with the stream', e);
     });
   });
-
+});
 });

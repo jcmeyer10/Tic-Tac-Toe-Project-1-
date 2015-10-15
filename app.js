@@ -10,6 +10,7 @@ var gamePiece = $('.gameboard').children();
 var winner = 0;
 var token = 0;
 var tie = 0;
+var game = {};
 
 var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
 
@@ -52,7 +53,6 @@ $(document).ready(function() {
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
       $('.message').html('');
-      $('message').html(playerTurn);
 
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
@@ -70,8 +70,10 @@ $(document).ready(function() {
 //Switches players thus switches between X's and O's
       if (playerTurn === player1){
         playerTurn = player2;
+        $('.message').html("Player " + playerTurn + " make a move");
       } else {
         playerTurn = player1;
+        $('.message').html("Player " + playerTurn + " make a move");
       }
     }
   });
