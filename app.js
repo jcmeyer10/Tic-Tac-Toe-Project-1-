@@ -53,7 +53,6 @@ $(document).ready(function() {
       $(this).text(playerTurn);
       $('.message').html('')
 
-
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
 //calls updateScoreboard function and updates score accordingly
@@ -66,6 +65,7 @@ $(document).ready(function() {
         updateScoreboard();
         $('.message').html("" + playerTurn + " is the Winner!")
       }
+
 //Switches players thus switches between X's and O's
       if (playerTurn === player1){
         playerTurn = player2;
