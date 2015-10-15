@@ -54,7 +54,9 @@ $(document).ready(function() {
       $('.message').html('')
 
 
-//Counter for keeping score and allowing the checkScoreboard function to iterate the correct and updated score in the message board
+//Where isWInner function is called and checked after every click
+//adds to win counter if the a winner is found
+//calls updateScoreboard function and updates score accordingly
       if (isWinner(playerTurn)) {
         if (isWinner("X")) {
           xWin++
