@@ -35,7 +35,7 @@ $(document).ready(function() {
     $('tie-score').html("Tie Score: " + tie);
   };
 
-//Function to determin who is the winner.  Brute force here by refeerencing the DOM.
+//Function to determin who is the winner.  Brute force here by refeerencing the DOM when running through winning scenarios.
   isWinner = function (player){
     return  ($(gamePiece[0]).text() === player && $(gamePiece[1]).text() ===  player && $(gamePiece[2]).text() ===  player) ||
             ($(gamePiece[3]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[5]).text() ===  player) ||
@@ -47,11 +47,12 @@ $(document).ready(function() {
             ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
   };
 
-//Click function on the gameboard and it's children so that if there is not a winner, we keep playing
+//Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePiece).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
       $('.message').html('')
+
 
 //Counter for keeping score and allowing the checkScoreboard function to iterate the correct and updated score in the message board
       if (isWinner(playerTurn)) {
