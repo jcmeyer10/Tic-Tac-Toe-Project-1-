@@ -51,7 +51,7 @@ $(document).ready(function() {
   $(gamePiece).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
-      $('.message').html('')
+      $('.message').html('');
 
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
