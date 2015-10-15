@@ -51,6 +51,7 @@ $(document).ready(function() {
   $(gamePiece).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
+      $('.message').html('')
 
 //Counter for keeping score and allowing the checkScoreboard function to iterate the correct and updated score in the message board
       if (isWinner(playerTurn)) {
