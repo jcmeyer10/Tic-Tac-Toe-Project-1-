@@ -1,10 +1,7 @@
-* {
-  font-family: 'eraserregular';
- }
-
 body {
   background: url(chalkboard.jpg) no-repeat center center fixed;
   background-size: cover;
+  font-family: 'eraserregular';
 }
 
 h1 {
@@ -51,6 +48,7 @@ h2 {
   color: #FFCC11;
   float:left;
   padding-right: 65px;
+  font-family: arial;
 }
 
 .gameboard {

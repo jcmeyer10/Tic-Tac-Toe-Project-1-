@@ -52,6 +52,7 @@ $(document).ready(function() {
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
       $('.message').html('');
+      $('message').html(playerTurn);
 
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
