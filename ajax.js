@@ -1,3 +1,5 @@
+var game = {};
+
 'use strict';
 var tttapi = {
   gameWatcher: null,
@@ -32,6 +34,9 @@ var tttapi = {
       dataType: 'json'
     }, callback);
   },
+
+  //store the token so when you hit login
+  //create namespace var = game and add gameID and token
 
   //Authenticated api actions
   listGames: function (token, callback) {
@@ -148,6 +153,8 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
+      game.token = $('token').val();
+
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
