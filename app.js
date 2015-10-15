@@ -47,7 +47,7 @@ $(document).ready(function() {
 
       if (isWinner(playerTurn)) {
         if (isWinner("X")) {
-          xWin++;
+          xWin++
         } else {
           oWin++;
         }
