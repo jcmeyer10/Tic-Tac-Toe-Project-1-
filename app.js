@@ -1,3 +1,5 @@
+//Having some trouble with document.ready so I declared all my variables outside so they were loaded and accessible to any function that mgith rely upon them
+
 'use strict';
 var xWin = 0;
 var oWin = 0;
@@ -24,12 +26,16 @@ $(document).ready(function() {
   token = 0;
   tie = 0;
 
+  var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
+
+//Updates scoreboard when there is a winner by updating HTML through jquery
   updateScoreboard = function (){
     $('.x-score').html("X Score: " + xWin);
     $('.o-score').html("O Score: " + oWin);
     $('tie-score').html("Tie Score: " + tie);
   };
 
+//Function to determin who is the winner.  Brute force here by refeerencing the DOM.
   isWinner = function (player){
     return  ($(gamePiece[0]).text() === player && $(gamePiece[1]).text() ===  player && $(gamePiece[2]).text() ===  player) ||
             ($(gamePiece[3]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[5]).text() ===  player) ||
@@ -41,10 +47,12 @@ $(document).ready(function() {
             ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
   };
 
+//Click function on the gameboard and it's children so that if there is not a winner, we keep playing
   $(gamePiece).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
 
+//Counter for keeping score and allowing the checkScoreboard function to iterate the correct and updated score in the message board
       if (isWinner(playerTurn)) {
         if (isWinner("X")) {
           xWin++
@@ -54,7 +62,7 @@ $(document).ready(function() {
         updateScoreboard();
         $('.message').html("" + playerTurn + " is the Winner!")
       }
-
+//Switches players thus switches between X's and O's
       if (playerTurn === player1){
         playerTurn = player2;
       } else {
@@ -63,6 +71,7 @@ $(document).ready(function() {
     }
   });
 
+//Allows players to restart game
   $('.startbutton').on('click', function(){
     $(gamePiece).each(function(){
       $(gamePiece).html('');
