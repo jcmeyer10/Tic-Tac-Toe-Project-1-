@@ -49,14 +49,7 @@ $(document).ready(function() {
             ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
   };
 
-$('#login_submit').click(function()
-  tttapi.login{
-    "credentials": {
-      "email":
-      "password":
-    }
-  }
-  )
+
 
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePiece).on('click', function(){
