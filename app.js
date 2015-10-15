@@ -1,125 +1,76 @@
 'use strict';
+var xWin = 0;
+var oWin = 0;
+var player1 = "X";
+var player2 = "O";
+var playerTurn = player1;
+var gamePiece = $('.gameboard').children();
+var winner = 0;
+var token = 0;
+var tie = 0;
+
+var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
+
+
 //Begin Document Ready
 $(document).ready(function() {
+  xWin = 0;
+  oWin = 0;
+  player1 = "X";
+  player2 = "O";
+  playerTurn = player1;
+  gamePiece = $('.gameboard').children();
+  winner = 0;
+  token = 0;
+  tie = 0;
 
-
-  var xWin = 0;
-  var oWin = 0;
-  var player1 = "X";
-  var player2 = "O";
-  var playerTurn = player1;
-  var gamePiece = $('.gameboard').children();
-  var winner = 0;
-  var token = 0;
-  var tie = 0;
-
-
-// This switches player and stops a cell
-//from being clicked more than once
-
-
-$('.startbutton').on('click', function(){
-    $(gamePiece).each(function(){
-      if ($(this).text()!== ''){
-        token += 1;
-            }
-      if (token >= 1){
-        $(gamePiece).html('');
-        $('.message').html("Let's Start a New Game!");
-      };
-  });
-    playGame();
-});
-
-//This stops the game once a win has been recorded
-var stopGame = function(){
-  $('.box').off('click')
-  }
-
-//End of Document Ready
-
-
-var playGame = function () {
-  $(gamePiece).on('click', function(){
-     if (playerTurn === player1){
-     $(this).text("X");
-      whoWins();
-      updateScoreboard();
-      playerTurn = player2;
-     } else {
-       $(this).text("O");
-       whoWins();
-       updateScoreboard();
-       playerTurn = player1;
-     }
-  });
-}
-
-// var fullBoard =  function(){
-//     $(gamePiece).each(function(){
-//       if ($(this).each()!== ''){
-//         token += 1;
-//       }
-//     });
-//     if (token === 9){
-//       return "Cat's Game";
-//     }
-//     console.log("Cat's Game")
-//   };
-
-//This is to update the scoreboard
-var updateScoreboard = function (){
-  $('.x-score').html("X Score: " + xWin);
-  $('.o-score').html("O Score: " + oWin);
-  $('tie-score').html("Tie Score: " + tie)
+  updateScoreboard = function (){
+    $('.x-score').html("X Score: " + xWin);
+    $('.o-score').html("O Score: " + oWin);
+    $('tie-score').html("Tie Score: " + tie);
   };
 
-// Winner Message for X
-var xWinnerMessage = function(){
-  if (xWin === xWin){
-    $('.message').html("X is the Winner!")
-  }
-};
+  isWinner = function (player){
+    return  ($(gamePiece[0]).text() === player && $(gamePiece[1]).text() ===  player && $(gamePiece[2]).text() ===  player) ||
+            ($(gamePiece[3]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[5]).text() ===  player) ||
+            ($(gamePiece[6]).text() === player && $(gamePiece[7]).text() ===  player && $(gamePiece[8]).text() ===  player) ||
+            ($(gamePiece[0]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[8]).text() ===  player) ||
+            ($(gamePiece[2]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[6]).text() ===  player) ||
+            ($(gamePiece[0]).text() === player && $(gamePiece[3]).text() ===  player && $(gamePiece[6]).text() ===  player) ||
+            ($(gamePiece[1]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[7]).text() ===  player) ||
+            ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
+  };
 
-//Winner message for O
-var oWinnerMessage = function(){
-  if (oWin === oWin){
-    $('.message').html("O is the Winner!")
-  }
-}
+  $(gamePiece).on('click', function(){
+    if (!isWinner("X") && !isWinner("O")) {
+      $(this).text(playerTurn);
 
-//This is the logic that determines if there is a winner.
-  var whoWins = function whoWins() {
-    if (
-       $(gamePiece[0]).text() ==="X" && $(gamePiece[1]).text() === "X" && $(gamePiece[2]).text() === "X" ||
-       $(gamePiece[3]).text() ==="X" && $(gamePiece[4]).text() === "X" && $(gamePiece[5]).text() === "X" ||
-       $(gamePiece[6]).text() ==="X" && $(gamePiece[7]).text() === "X" && $(gamePiece[8]).text() === "X" ||
-       $(gamePiece[0]).text() ==="X" && $(gamePiece[4]).text() === "X" && $(gamePiece[8]).text() === "X" ||
-       $(gamePiece[2]).text() ==="X" && $(gamePiece[4]).text() === "X" && $(gamePiece[6]).text() === "X" ||
-       $(gamePiece[0]).text() ==="X" && $(gamePiece[3]).text() === "X" && $(gamePiece[6]).text() === "X" ||
-       $(gamePiece[1]).text() ==="X" && $(gamePiece[4]).text() === "X" && $(gamePiece[7]).text() === "X" ||
-       $(gamePiece[2]).text() ==="X" && $(gamePiece[5]).text() === "X" && $(gamePiece[8]).text() === "X"
-       ) {
-        stopGame();
-        xWinnerMessage();
-        console.log(xWin)
-        return ++xWin;
-
-  } else if (
-       $(gamePiece[0]).text() ==="O" && $(gamePiece[1]).text() === "O" && $(gamePiece[2]).text() === "O" ||
-       $(gamePiece[3]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[5]).text() === "O" ||
-       $(gamePiece[6]).text() ==="O" && $(gamePiece[7]).text() === "O" && $(gamePiece[8]).text() === "O" ||
-       $(gamePiece[0]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[8]).text() === "O" ||
-       $(gamePiece[2]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[6]).text() === "O" ||
-       $(gamePiece[0]).text() ==="O" && $(gamePiece[3]).text() === "O" && $(gamePiece[6]).text() === "O" ||
-       $(gamePiece[1]).text() ==="O" && $(gamePiece[4]).text() === "O" && $(gamePiece[7]).text() === "O" ||
-       $(gamePiece[2]).text() ==="O" && $(gamePiece[5]).text() === "O" && $(gamePiece[8]).text() === "O"
-       ) {
-        console.log(oWin);
-        oWinnerMessage();
-        stopGame();
-        return ++oWin;
+      if (isWinner(playerTurn)) {
+        if (isWinner("X")) {
+          xWin++;
+        } else {
+          oWin++;
+        }
+        updateScoreboard();
+        $('.message').html("" + playerTurn + " is the Winner!")
       }
-};
+
+      if (playerTurn === player1){
+        playerTurn = player2;
+      } else {
+        playerTurn = player1;
+      }
+    }
+  });
+
+  $('.startbutton').on('click', function(){
+    $(gamePiece).each(function(){
+      $(gamePiece).html('');
+      $('.message').html("Let's Start a New Game!");
+    });
+
+  });
 });
-// end documentReady
+
+
+
