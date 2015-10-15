@@ -154,7 +154,6 @@ $(function() {
       callback(null, data);
       $('.token').val(data.user.token);
       game.token = $('token').val();
-
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
@@ -169,8 +168,16 @@ $(function() {
   $('#create-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
     e.preventDefault();
-    tttapi.createGame(token, callback);
+    tttapi.createGame(token, function(error, data) {
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    game.id = data.game.id;
   });
+});
 
   $('#show-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
