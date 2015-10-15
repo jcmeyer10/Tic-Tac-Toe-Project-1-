@@ -33,9 +33,6 @@ var tttapi = {
     }, callback);
   },
 
-  //store the token so when you hit login
-  //create namespace var = game and add gameID and token
-
   //Authenticated api actions
   listGames: function (token, callback) {
     this.ajax({
@@ -151,7 +148,6 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
-      game.token = $('token').val();
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
@@ -166,16 +162,8 @@ $(function() {
   $('#create-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
     e.preventDefault();
-    tttapi.createGame(token, function(error, data) {
-    if (error) {
-      console.error(error);
-      $('#result').val('status: ' + error.status + ', error: ' +error.error);
-      return;
-    }
-    $('#result').val(JSON.stringify(data, null, 4));
-    game.id = data.game.id;
+    tttapi.createGame(token, callback);
   });
-});
 
   $('#show-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
@@ -196,7 +184,8 @@ $(function() {
     var id = $('#mark-id').val();
     var data = wrap('game', wrap('cell', form2object(this)));
     e.preventDefault();
-    tttapi.markCell(id, data, token, callback)
+    tttapi.markCell(id, data, token, callback);
+  });
 
   $('#watch-game').on('submit', function(e){
     var token = $(this).children('[name="token"]').val();
@@ -220,5 +209,5 @@ $(function() {
       console.error('an error has occured with the stream', e);
     });
   });
-});
+
 });

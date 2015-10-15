@@ -26,6 +26,7 @@ $(document).ready(function() {
   winner = 0;
   token = 0;
   tie = 0;
+  var game = {};
 
   var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
 
@@ -48,6 +49,15 @@ $(document).ready(function() {
             ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
   };
 
+$('#login_submit').click(function()
+  tttapi.login{
+    "credentials": {
+      "email":
+      "password":
+    }
+  }
+  )
+
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePiece).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
@@ -63,17 +73,15 @@ $(document).ready(function() {
         } else {
           oWin++;
         }
-        updateScoreboard();
         $('.message').html("" + playerTurn + " is the Winner!")
+        updateScoreboard();
       }
 
 //Switches players thus switches between X's and O's
       if (playerTurn === player1){
         playerTurn = player2;
-        $('.message').html("Player " + playerTurn + " make a move");
       } else {
         playerTurn = player1;
-        $('.message').html("Player " + playerTurn + " make a move");
       }
     }
   });
