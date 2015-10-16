@@ -48,14 +48,15 @@ $(document).ready(function() {
             ($(gamePieces[2]).text() === player && $(gamePieces[5]).text() ===  player && $(gamePieces[8]).text() ===  player);
   };
 
-var tieGame = function(){
-  for (var i = 0; i < $('.box').length; i++) {
-      if ($('.box').eq(i).html() === "") {
-        return false;
-      }
-    }
-    return "Cat's Game";
-  };
+//Cat's Game that I couldn't work in.
+// var tieGame = function(){
+//   for (var i = 0; i < $('.box').length; i++) {
+//       if ($('.box').eq(i).html() === "") {
+//         return false;
+//       }
+//     }
+//     return "Cat's Game";
+//   };
 
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePieces).on('click', function(){
@@ -90,7 +91,7 @@ var tieGame = function(){
     }
   });
 
-//Allows players to restart game
+//Allows players to restart game and is connected with the AJAX
   $('#create-game').on('click', function(){
     $(gamePieces).each(function(){
       $(gamePieces).html('');
