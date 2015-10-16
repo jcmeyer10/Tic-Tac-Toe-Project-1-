@@ -18,30 +18,29 @@
         </div>
 
     <div class="scoreboard">
-            <div class = 'x-score'> X Score: 0</div>
-            <div class = 'o-score'> O Score: 0</div>
+      <form id="create-game">
+        <input name="create-game" type="submit" value="Create Game">
+        <input class="token" name="token" type="hidden">
+      </form>
+      <div class = 'x-score'> X Score: 0</div>
+      <div class = 'o-score'> O Score: 0</div>
     </div>
     <html>
 <body>
     <div class="ajax">
 </body>
 <body>
+  <form id="login">
+    <input name="email" type="text" placeholder="email">
+    <input name="password" type="password" placeholder="password">
+    <input name="login" type="submit" value="Login">
+  </form>
   <form id="register">
     <input name="email" type="text" placeholder="email">
     <input name="password" type="password" placeholder="password">
     <input name="password_confirmation" type="password" placeholder="password confirmation">
     <input name="register" type="submit" value="Register">
   </form>
-  <form id="login">
-    <input name="email" type="text" placeholder="email">
-    <input name="password" type="password" placeholder="password">
-    <input name="login" type="submit" value="Login">
-  </form>
-  <form id="create-game">
-    <input name="create-game" type="submit" value="Create Game">
-    <input class="token" name="token" type="hidden">
-  </form>
- </form>
   <br>
   <label for="result">Result</label>
   <textarea id="result"></textarea>

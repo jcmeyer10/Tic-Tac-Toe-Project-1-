@@ -56,6 +56,10 @@ h2 {
   width:150px;
 }
 
+#login {
+  padding-bottom: 25px;
+}
+
 .gameboard {
   width: 350px;
   height: 350px;

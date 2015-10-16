@@ -57,6 +57,10 @@ var tieGame = function(){
     return "Cat's Game";
   };
 
+  if (counter === 8){
+    console.log("meow");
+  }
+
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePieces).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
@@ -66,28 +70,31 @@ var tieGame = function(){
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
 //calls updateScoreboard function and updates score accordingly
-      if (isWinner(playerTurn)) {
-        if (isWinner("X")) {
-          xWin++
-          $('.message').html("" + playerTurn + " is the Winner!");
-        }
-        else if (isWinner("O"))  {
-          oWin++;
-          $('.message').html("" + playerTurn + " is the Winner!");
-        }
-        else  if (($(gamePieces)).html() !== "") {
-          return "Cat's Game";
-        }
-        updateScoreboard();
+    if (isWinner(playerTurn)) {
+      if (counter === 9){
+        console.log("meow")
       }
+      else if (isWinner("X")) {
+        xWin++
+        $('.message').html("" + playerTurn + " is the Winner!");
+      } else {
+        oWin++;
+        $('.message').html("" + playerTurn + " is the Winner!");
+          }
+    updateScoreboard();
+  }
 
 //Switches players thus switches between X's and O's
-      if (playerTurn === player1){
-        playerTurn = player2;
-      } else {
-        playerTurn = player1;
+    if (playerTurn === player1){
+      playerTurn = player2;
+      counter++;
+      console.log(counter);
+    } else {
+      playerTurn = player1;
+      counter++;
+      console.log(counter);
+        }
       }
-    }
   });
 
 //Allows players to restart game
@@ -95,6 +102,7 @@ var tieGame = function(){
     $(gamePieces).each(function(){
       $(gamePieces).html('');
       $('.message').html("Let's Start a New Game!");
+      counter = 0;
     });
 
   });
