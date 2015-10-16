@@ -51,6 +51,11 @@ h2 {
   font-family: arial;
 }
 
+#result {
+  height:250px;
+  width:150px;
+}
+
 .gameboard {
   width: 350px;
   height: 350px;
