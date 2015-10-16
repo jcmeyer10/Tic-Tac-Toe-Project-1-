@@ -11,6 +11,7 @@ var winner = 0;
 var token = 0;
 var tie = 0;
 var game = {};
+var counter = 0;
 
 var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
 
@@ -48,8 +49,6 @@ $(document).ready(function() {
             ($(gamePiece[1]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[7]).text() ===  player) ||
             ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
   };
-
-
 
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePiece).on('click', function(){

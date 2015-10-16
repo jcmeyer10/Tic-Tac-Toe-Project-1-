@@ -60,6 +60,7 @@ h2 {
   min-width: 20px;
   min-height: 20px;
   float: left;
+  display: none;
 }
 
 .gameboard > * {

@@ -1,4 +1,7 @@
 'use strict';
+
+var game = {};
+
 var tttapi = {
   gameWatcher: null,
   ttt: 'http://ttt.wdibos.com',
@@ -10,6 +13,8 @@ var tttapi = {
       cb({jqxher: jqxhr, status: status, error: error});
     });
   },
+
+
 
   register: function register(credentials, callback) {
     this.ajax({
@@ -32,6 +37,9 @@ var tttapi = {
       dataType: 'json'
     }, callback);
   },
+
+  //store the token so when you hit login
+  //create namespace var = game and add gameID and token
 
   //Authenticated api actions
   listGames: function (token, callback) {
@@ -148,10 +156,13 @@ $(function() {
       }
       callback(null, data);
       $('.token').val(data.user.token);
+      game.token = data.user.token;
+      $('.gameboard').show("slow");
     };
     e.preventDefault();
     tttapi.login(credentials, cb);
   });
+
 
   $('#list-games').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
@@ -162,8 +173,17 @@ $(function() {
   $('#create-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
     e.preventDefault();
-    tttapi.createGame(token, callback);
+    tttapi.createGame(token, function(error, data) {
+    if (error) {
+      console.error(error);
+      $('#result').val('status: ' + error.status + ', error: ' +error.error);
+      return;
+    }
+    $('#result').val(JSON.stringify(data, null, 4));
+    game.id = data.game.id;
+    $(gamePiece).html('');
   });
+});
 
   $('#show-game').on('submit', function(e) {
     var token = $(this).children('[name="token"]').val();
@@ -179,11 +199,15 @@ $(function() {
     tttapi.joinGame(id, token, callback);
   });
 
-  $('#mark-cell').on('submit', function(e) {
-    var token = $(this).children('[name="token"]').val();
-    var id = $('#mark-id').val();
-    var data = wrap('game', wrap('cell', form2object(this)));
+  $(gamePiece).click(function(e) {
+    var token = game.token;
+    var id = game.id
+    var index = $(this).index();
+    var value = $(this).html();
+    var data = wrap('game', wrap('cell', {index: index, value: value}));
+
     e.preventDefault();
+    debugger;
     tttapi.markCell(id, data, token, callback);
   });
 
@@ -193,7 +217,6 @@ $(function() {
     e.preventDefault();
 
     var gameWatcher = tttapi.watchGame(id, token);
-
     gameWatcher.on('change', function(data){
       var parsedData = JSON.parse(data);
       if (data.timeout) { //not an error
@@ -209,5 +232,5 @@ $(function() {
       console.error('an error has occured with the stream', e);
     });
   });
-
 });
+
