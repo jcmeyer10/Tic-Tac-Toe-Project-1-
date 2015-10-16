@@ -1,12 +1,10 @@
-//Having some trouble with document.ready so I declared all my variables outside so they were loaded and accessible to any function that mgith rely upon them
-
 'use strict';
 var xWin = 0;
 var oWin = 0;
 var player1 = "X";
 var player2 = "O";
 var playerTurn = player1;
-var gamePiece = $('.gameboard').children();
+var gamePieces = $('.gameboard').children();
 var winner = 0;
 var token = 0;
 var tie = 0;
@@ -23,7 +21,7 @@ $(document).ready(function() {
   player1 = "X";
   player2 = "O";
   playerTurn = player1;
-  gamePiece = $('.gameboard').children();
+  gamePieces = $('.gameboard').children();
   winner = 0;
   token = 0;
   tie = 0;
@@ -40,18 +38,27 @@ $(document).ready(function() {
 
 //Function to determin who is the winner.  Brute force here by refeerencing the DOM when running through winning scenarios.
   isWinner = function (player){
-    return  ($(gamePiece[0]).text() === player && $(gamePiece[1]).text() ===  player && $(gamePiece[2]).text() ===  player) ||
-            ($(gamePiece[3]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[5]).text() ===  player) ||
-            ($(gamePiece[6]).text() === player && $(gamePiece[7]).text() ===  player && $(gamePiece[8]).text() ===  player) ||
-            ($(gamePiece[0]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[8]).text() ===  player) ||
-            ($(gamePiece[2]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[6]).text() ===  player) ||
-            ($(gamePiece[0]).text() === player && $(gamePiece[3]).text() ===  player && $(gamePiece[6]).text() ===  player) ||
-            ($(gamePiece[1]).text() === player && $(gamePiece[4]).text() ===  player && $(gamePiece[7]).text() ===  player) ||
-            ($(gamePiece[2]).text() === player && $(gamePiece[5]).text() ===  player && $(gamePiece[8]).text() ===  player);
+    return  ($(gamePieces[0]).text() === player && $(gamePieces[1]).text() ===  player && $(gamePieces[2]).text() ===  player) ||
+            ($(gamePieces[3]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[5]).text() ===  player) ||
+            ($(gamePieces[6]).text() === player && $(gamePieces[7]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
+            ($(gamePieces[0]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
+            ($(gamePieces[2]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[6]).text() ===  player) ||
+            ($(gamePieces[0]).text() === player && $(gamePieces[3]).text() ===  player && $(gamePieces[6]).text() ===  player) ||
+            ($(gamePieces[1]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[7]).text() ===  player) ||
+            ($(gamePieces[2]).text() === player && $(gamePieces[5]).text() ===  player && $(gamePieces[8]).text() ===  player);
+  };
+
+var tieGame = function(){
+  for (var i = 0; i < $('.box').length; i++) {
+      if ($('.box').eq(i).html() === "") {
+        return false;
+      }
+    }
+    return "Cat's Game";
   };
 
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
-  $(gamePiece).on('click', function(){
+  $(gamePieces).on('click', function(){
     if (!isWinner("X") && !isWinner("O")) {
       $(this).text(playerTurn);
       $('.message').html('');
@@ -62,10 +69,15 @@ $(document).ready(function() {
       if (isWinner(playerTurn)) {
         if (isWinner("X")) {
           xWin++
-        } else {
-          oWin++;
+          $('.message').html("" + playerTurn + " is the Winner!");
         }
-        $('.message').html("" + playerTurn + " is the Winner!")
+        else if (isWinner("O"))  {
+          oWin++;
+          $('.message').html("" + playerTurn + " is the Winner!");
+        }
+        else  if (($(gamePieces)).html() !== "") {
+          return "Cat's Game";
+        }
         updateScoreboard();
       }
 
@@ -79,14 +91,12 @@ $(document).ready(function() {
   });
 
 //Allows players to restart game
-  $('.startbutton').on('click', function(){
-    $(gamePiece).each(function(){
-      $(gamePiece).html('');
+  $('#create-game').on('click', function(){
+    $(gamePieces).each(function(){
+      $(gamePieces).html('');
       $('.message').html("Let's Start a New Game!");
     });
 
   });
 });
-
-
 

@@ -181,7 +181,7 @@ $(function() {
     }
     $('#result').val(JSON.stringify(data, null, 4));
     game.id = data.game.id;
-    $(gamePiece).html('');
+    $(gamePieces).html('');
   });
 });
 
@@ -199,7 +199,7 @@ $(function() {
     tttapi.joinGame(id, token, callback);
   });
 
-  $(gamePiece).click(function(e) {
+  $(gamePieces).click(function(e) {
     var token = game.token;
     var id = game.id
     var index = $(this).index();
@@ -207,7 +207,6 @@ $(function() {
     var data = wrap('game', wrap('cell', {index: index, value: value}));
 
     e.preventDefault();
-    debugger;
     tttapi.markCell(id, data, token, callback);
   });
 
