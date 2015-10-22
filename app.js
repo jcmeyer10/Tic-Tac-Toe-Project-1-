@@ -1,13 +1,10 @@
-'use strict';
+// 'use strict';
 var xWin = 0;
 var oWin = 0;
 var player1 = "X";
 var player2 = "O";
 var playerTurn = player1;
 var gamePieces = $('.gameboard').children();
-var winner = 0;
-var token = 0;
-var tie = 0;
 var game = {};
 var counter = 0;
 
@@ -23,44 +20,14 @@ $(document).ready(function() {
   playerTurn = player1;
   gamePieces = $('.gameboard').children();
   winner = 0;
-  token = 0;
-  tie = 0;
   var game = {};
 
   var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
 
-//Updates scoreboard when there is a winner by updating HTML through jquery
-  updateScoreboard = function (){
-    $('.x-score').html("X Score: " + xWin);
-    $('.o-score').html("O Score: " + oWin);
-    $('tie-score').html("Tie Score: " + tie);
-  };
-
-//Function to determin who is the winner.  Brute force here by refeerencing the DOM when running through winning scenarios.
-  isWinner = function (player){
-    return  ($(gamePieces[0]).text() === player && $(gamePieces[1]).text() ===  player && $(gamePieces[2]).text() ===  player) ||
-            ($(gamePieces[3]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[5]).text() ===  player) ||
-            ($(gamePieces[6]).text() === player && $(gamePieces[7]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
-            ($(gamePieces[0]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
-            ($(gamePieces[2]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[6]).text() ===  player) ||
-            ($(gamePieces[0]).text() === player && $(gamePieces[3]).text() ===  player && $(gamePieces[6]).text() ===  player) ||
-            ($(gamePieces[1]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[7]).text() ===  player) ||
-            ($(gamePieces[2]).text() === player && $(gamePieces[5]).text() ===  player && $(gamePieces[8]).text() ===  player);
-  };
-
-//Cat's Game that I couldn't work in.
-// var tieGame = function(){
-//   for (var i = 0; i < $('.box').length; i++) {
-//       if ($('.box').eq(i).html() === "") {
-//         return false;
-//       }
-//     }
-//     return "Cat's Game";
-//   };
 
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePieces).on('click', function(){
-    if (!isWinner("X") && !isWinner("O")) {
+    if (!isWinner("X") && !isWinner("O") && !tieGame()) {
       $(this).text(playerTurn);
       $('.message').html('');
 
@@ -69,15 +36,14 @@ $(document).ready(function() {
 //calls updateScoreboard function and updates score accordingly
       if (isWinner(playerTurn)) {
         if (isWinner("X")) {
-          xWin++
+          xWin++;
           $('.message').html("" + playerTurn + " is the Winner!");
         }
-        else if (isWinner("O"))  {
+        else if (isWinner("O")){
           oWin++;
           $('.message').html("" + playerTurn + " is the Winner!");
-        }
-        else  if (($(gamePieces)).html() !== "") {
-          return "Cat's Game";
+        } else {
+          return true;
         }
         updateScoreboard();
       }
@@ -85,18 +51,50 @@ $(document).ready(function() {
 //Switches players thus switches between X's and O's
       if (playerTurn === player1){
         playerTurn = player2;
-      } else {
+        counter++;
+      } else{
         playerTurn = player1;
+        counter++;
       }
+    } else {
+      $('#board').hide();
+      $('.message').html("Tie Game");
     }
   });
 
-//Allows players to restart game and is connected with the AJAX
+  var tieGame = function(){
+      if (!isWinner(playerTurn) && counter === 9){
+        return "Cat Game";
+      }
+  };
+
+//Updates scoreboard when there is a winner by updating HTML through jquery
+  var updateScoreboard = function (){
+    $('.x-score').html("X Score: " + xWin);
+    $('.o-score').html("O Score: " + oWin);
+    $('tie-score').html("Tie Score: " + tie);
+  };
+
+  //Allows players to restart game and is connected with the AJAX
   $('#create-game').on('click', function(){
     $(gamePieces).each(function(){
+      $('#board').show();
       $(gamePieces).html('');
       $('.message').html("Let's Start a New Game!");
     });
-
+    counter = 1;
   });
+
+//Function to determin who is the winner.  Brute force here by refeerencing the DOM when running through winning scenarios.
+  isWinner = function (player) {
+  return  ($(gamePieces[0]).text() === player && $(gamePieces[1]).text() ===  player && $(gamePieces[2]).text() ===  player) ||
+          ($(gamePieces[3]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[5]).text() ===  player) ||
+          ($(gamePieces[6]).text() === player && $(gamePieces[7]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
+          ($(gamePieces[0]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
+          ($(gamePieces[2]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[6]).text() ===  player) ||
+          ($(gamePieces[0]).text() === player && $(gamePieces[3]).text() ===  player && $(gamePieces[6]).text() ===  player) ||
+          ($(gamePieces[1]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[7]).text() ===  player) ||
+          ($(gamePieces[2]).text() === player && $(gamePieces[5]).text() ===  player && $(gamePieces[8]).text() ===  player);
+        };
+
 });
