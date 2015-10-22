@@ -1,4 +1,4 @@
-//'use strict';
+// 'use strict';
 var xWin = 0;
 var oWin = 0;
 var player1 = "X";
@@ -7,7 +7,8 @@ var playerTurn = player1;
 var gamePieces = $('.gameboard').children();
 var game = {};
 var counter = 0;
-
+var updateScoreboard;
+var isWinner;
 
 //Begin Document Ready
 $(document).ready(function() {
@@ -17,17 +18,6 @@ $(document).ready(function() {
     if (!isWinner("X") && !isWinner("O") && !tieGame()) {
       $(this).text(playerTurn);
       $('.message').html('');
-      counter++;
-
-//Switches players thus switches between X's and O's
-      if (playerTurn === player1){
-        playerTurn = player2;
-      } else{
-        playerTurn = player1;
-      }
-    } else {
-      $('.message').html("Cat's Game");
-    }
 
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
@@ -36,21 +26,33 @@ $(document).ready(function() {
         if (isWinner("X")) {
           xWin++;
           $('.message').html("" + playerTurn + " is the Winner!");
-          }
+        }
         else if (isWinner("O")){
           oWin++;
           $('.message').html("" + playerTurn + " is the Winner!");
-      } else {
+        } else {
           return true;
         }
         updateScoreboard();
       }
-    });
 
-//Sets conditions so that we don't have to play until a winner
+//Switches players thus switches between X's and O's
+      if (playerTurn === player1){
+        playerTurn = player2;
+        counter++;
+      } else{
+        playerTurn = player1;
+        counter++;
+      }
+    } else {
+      $('#board').hide();
+      $('.message').html("Tie Game");
+    }
+  });
+
   var tieGame = function(){
       if (!isWinner(playerTurn) && counter === 9){
-        return true;
+        return "Cat Game";
       }
   };
 
