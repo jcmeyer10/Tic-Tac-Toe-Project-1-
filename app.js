@@ -1,4 +1,4 @@
-// 'use strict';
+//'use strict';
 var xWin = 0;
 var oWin = 0;
 var player1 = "X";
@@ -8,28 +8,26 @@ var gamePieces = $('.gameboard').children();
 var game = {};
 var counter = 0;
 
-var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
-
 
 //Begin Document Ready
 $(document).ready(function() {
-  xWin = 0;
-  oWin = 0;
-  player1 = "X";
-  player2 = "O";
-  playerTurn = player1;
-  gamePieces = $('.gameboard').children();
-  winner = 0;
-  var game = {};
-
-  var updateScoreboard, xWinnerMessage, oWinnerMessage, isWinner;
-
 
 //Click function on the gameboard and it's children so that if there is not a winner, we keep playing and putting in either X or O depending on player turn
   $(gamePieces).on('click', function(){
     if (!isWinner("X") && !isWinner("O") && !tieGame()) {
       $(this).text(playerTurn);
       $('.message').html('');
+      counter++;
+
+//Switches players thus switches between X's and O's
+      if (playerTurn === player1){
+        playerTurn = player2;
+      } else{
+        playerTurn = player1;
+      }
+    } else {
+      $('.message').html("Cat's Game");
+    }
 
 //Where isWInner function is called and checked after every click
 //adds to win counter if the a winner is found
@@ -38,33 +36,21 @@ $(document).ready(function() {
         if (isWinner("X")) {
           xWin++;
           $('.message').html("" + playerTurn + " is the Winner!");
-        }
+          }
         else if (isWinner("O")){
           oWin++;
           $('.message').html("" + playerTurn + " is the Winner!");
-        } else {
+      } else {
           return true;
         }
         updateScoreboard();
       }
+    });
 
-//Switches players thus switches between X's and O's
-      if (playerTurn === player1){
-        playerTurn = player2;
-        counter++;
-      } else{
-        playerTurn = player1;
-        counter++;
-      }
-    } else {
-      $('#board').hide();
-      $('.message').html("Tie Game");
-    }
-  });
-
+//Sets conditions so that we don't have to play until a winner
   var tieGame = function(){
       if (!isWinner(playerTurn) && counter === 9){
-        return "Cat Game";
+        return true;
       }
   };
 
@@ -72,7 +58,6 @@ $(document).ready(function() {
   var updateScoreboard = function (){
     $('.x-score').html("X Score: " + xWin);
     $('.o-score').html("O Score: " + oWin);
-    $('tie-score').html("Tie Score: " + tie);
   };
 
   //Allows players to restart game and is connected with the AJAX
@@ -86,7 +71,7 @@ $(document).ready(function() {
   });
 
 //Function to determin who is the winner.  Brute force here by refeerencing the DOM when running through winning scenarios.
-  isWinner = function (player) {
+ var isWinner = function (player) {
   return  ($(gamePieces[0]).text() === player && $(gamePieces[1]).text() ===  player && $(gamePieces[2]).text() ===  player) ||
           ($(gamePieces[3]).text() === player && $(gamePieces[4]).text() ===  player && $(gamePieces[5]).text() ===  player) ||
           ($(gamePieces[6]).text() === player && $(gamePieces[7]).text() ===  player && $(gamePieces[8]).text() ===  player) ||
